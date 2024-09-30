@@ -1,0 +1,28 @@
+<svg [attr.width]="width" [attr.height]="height" [attr.viewBox]="'0 0 ' + width + ' ' + height" class="org-chart-svg" style="width: 100%" #svgContainer>
+  <g [attr.transform]="transform" #chartGroup>
+    <g *ngFor="let link of links" class="link">
+      <path [attr.d]="getLinkPath(link)" stroke="#555" stroke-width="1" fill="none"></path>
+    </g>
+
+    <g *ngFor="let node of nodes" class="node" [attr.transform]="'translate(' + node.x + ',' + node.y + ')'" (click)="toggleChildren(node)">
+      <rect [attr.width]="160" [attr.height]="node.children || node._children ? 60 : 80" rx="10" ry="10" fill="#EAF0F6" stroke="#2C3E50" stroke-width="1"></rect>
+      <image [attr.xlink:href]="node.data.image" x="10" y="10" width="40" height="40"></image>
+      <text class="name" [attr.x]="100" [attr.y]="node.children || node._children ? 25 : 35" dy="0.35em" text-anchor="middle" fill="#2C3E50" font-weight="bold">
+        {{ node.data.name }}
+      </text>
+      <text class="title" [attr.x]="100" [attr.y]="node.children || node._children ? 45 : 55" dy="0.35em" text-anchor="middle" fill="#2C3E50">
+        {{ node.data.title }}
+      </text>
+      <text *ngIf="node.data.count" class="child-count" x="130" y="-15" dy="0.35em" text-anchor="middle" fill="#2C3E50">
+        (
+        {{ node.data.count }})
+      </text>
+      <g *ngIf="node.children || node._children" class="expand-collapse-group" transform="translate(70, 65)" style="cursor: pointer" (click)="toggleChildren(node, $event)">
+        <circle r="10" fill="#fff" stroke="#2C3E50" stroke-width="1"></circle>
+        <text class="expand-collapse-text" dy="0.35em" text-anchor="middle" fill="#2C3E50">
+          {{ node.children ? "-" : "+" }}
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

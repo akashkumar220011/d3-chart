@@ -1,0 +1,41 @@
+{
+  "name": "Walid Arai",
+  "title": "CEO",
+  "image": "https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png",
+  "children": [
+    {
+      "name": "Anna Fali",
+      "title": "CMO",
+      "image": "https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png",
+      "children": [
+        {
+          "name": "John Doe",
+          "title": "Sales",
+          "image": "https://via.placeholder.com/48"
+        },
+        {
+          "name": "Jane Doe",
+          "title": "Marketing",
+          "image": "https://via.placeholder.com/48"
+        }
+      ]
+    },
+    {
+      "name": "Stephen Shaw",
+      "title": "CTO",
+      "image": "https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png",
+      "children": [
+        {
+          "name": "Peter Parker",
+          "title": "Development",
+          "image": "https://via.placeholder.com/48"
+        },
+        {
+          "name": "Bruce Wayne",
+          "title": "UI/UX Design",
+          "image": "https://via.placeholder.com/48"
+        }
+      ]
+    }
+  ]
+}

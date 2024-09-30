@@ -1,0 +1,42 @@
+<svg
+  [attr.width]="width"
+  [attr.height]="height"
+  [attr.viewBox]="'0, 0, ' + width + ', ' + width"
+  font-family="sans-serif"
+  font-size="10px"
+>
+  <g [attr.transform]="'translate(' + width / 2 + ', ' + width / 2 + ')'">
+    <ng-container *ngFor="let d of root.descendants().slice(1); let i = index">
+      <path
+        *ngIf="d.depth > 0"
+        [attr.fill]="getColor(d)"
+        [attr.d]="getArc(d)"
+        [attr.fill-opacity]="handleNodeOpacity(d)"
+        (mouseover)="handleMouseOver(d)"
+        (mouseleave)="handleMouseLeave()"
+        (click)="handleClick(d)"
+      >
+        <title *ngIf="d.depth" [attr.transform]="getTextTransform(d)">
+          {{ getAncestorsText(d) + "\n$" + format(d.value || 0) }}
+        </title>
+      </path>
+      <text
+        *ngIf="isTextVisible(d)"
+        [attr.transform]="getTextTransform(d)"
+        [attr.dy]="'0.35em'"
+        text-anchor="middle"
+      >
+        {{ getTruncatedText(d) }}
+      </text>
+    </ng-container>
+  </g>
+  <text
+    #titleText
+    [attr.x]="width / 2"
+    [attr.y]="width / 2 + 6"
+    text-anchor="middle"
+    font-size="2.5em"
+  ></text>
+</svg>
+
+<app-table [nodeData]="sendNodeData"></app-table>
